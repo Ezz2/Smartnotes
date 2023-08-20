@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Hello {{user}} <br>Welcome To SmartNotes App!</h1>
+        <br>
+        <a href="{% url 'notes.list' %}" class="btn btn-primary ">Check out your smart notes!</a>
+        {% else %}
+            <h1>Welcome To SmartNotes App!</h1>
+        {% endif %}
+{% endblock %}

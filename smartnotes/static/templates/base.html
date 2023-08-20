@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+    <head>
+        <title>SmartNotes!</title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar-dark bg-dark">
+            <ul class="nav justify-content-end" style="padding: 10px 10px;">
+            {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="btn btn-outline-light me-1" style="border-radius: 15px;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'notes.new' %}" class="btn btn-outline-light me-1" style="border-radius: 15px; margin: 0 9px;">Create a note</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'logout' %}" class="btn btn-outline-light me-1" style="border-radius: 15px;">Logout</a>
+                    </li>
+            {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="btn btn-outline-light me-1" style="border-radius: 15px; margin-right: 9px;">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'signup' %}" class="btn btn-outline-light me-1" style="border-radius: 15px;">Create account</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <p class="nav justify-content-end" style="margin-right: 20px;">{{today}}</p>
+        <div class="my-5 text-center container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
